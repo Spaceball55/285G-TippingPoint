@@ -1,4 +1,7 @@
 #include "main.h"
+#include "devices.hpp"
+
+bool tankDrive = true;
 
 /**
  * A callback function for LLEMU's center button.
@@ -74,6 +77,20 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+
+while(1){
+	
+	okapi::ChassisScales scales(movement);
+
+	std::shared_ptr<OdomChassisController> drive = 
+	ChassisControllerBuilder().withMotors(movement).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales).buildOdometry(); /*add to devices*/
+
+	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(drive->getModel());
+
+}
+
+
+/*
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	pros::Motor left_mtr(1);
 	pros::Motor right_mtr(2);
@@ -89,4 +106,6 @@ void opcontrol() {
 		right_mtr = right;
 		pros::delay(20);
 	}
+
+	*/
 }
