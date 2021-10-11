@@ -14,3 +14,6 @@ temp.log
 temp.errors
 *.ini
 .d/
+/.vs/VSWorkspaceState.json
+/.vs/285G-TippingPoint/v16/.suo
+/.vs/slnx.sqlite
