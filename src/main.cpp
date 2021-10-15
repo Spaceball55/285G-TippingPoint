@@ -78,14 +78,25 @@ void autonomous() {}
  */
 void opcontrol() {
 
-while(1){
-	
-	okapi::ChassisScales scales(movement);
-
 	std::shared_ptr<OdomChassisController> drive = 
 	ChassisControllerBuilder().withMotors(movement).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales).buildOdometry(); /*add to devices*/
 
 	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(drive->getModel());
+	
+	okapi::Controller controller;
+	
+while(1){
+	
+	if(tankDrive==true){
+		drive->getModel()->tank(controller.getAnalog(ControllerAnalog::leftY), controller.getAnalog(ControllerAnalog::rightY));
+		//tank drive using left and right to move
+		
+	}
+	else{
+		drive->getModel()->arcade(controller.getAnalog(ControllerAnalog::leftY), controller.getAnalog(ControllerAnalog::leftX));
+		//arcade control, in case we need it
+		
+	}
 
 }
 
