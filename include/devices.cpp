@@ -1,6 +1,6 @@
 #include "comp/devices.hpp"
 
-okapi::ChassisScales scales({3_in, 12_in}, imev5GreentTPR);
+//okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
 
 okapi::MotorGroup movement = MotorGroup({10,2,-11,-20});
 

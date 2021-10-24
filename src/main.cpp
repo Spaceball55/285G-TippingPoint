@@ -1,14 +1,18 @@
 #include "main.h"
-#include "devices.hpp"
+#include "comp/devices.hpp""
 
 bool tankDrive = true;
 
-std::shared_ptr<OdomChassisController> drive = 
-ChassisControllerBuilder().withMotors({10,2}, {-11, -20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(okapi::StateMode::CARTESIAN, 0_mm, 0_deg, 0.0001_mps).buildOdometry(); /*add to devices*/
 
 std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 	
 okapi::Controller controller;
+
+okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
+
+std::shared_ptr<OdomChassisController> chassis = 
+ChassisControllerBuilder().withMotors({10,2}, {-11, -20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry(); //add to devices
+
 	
 
 
