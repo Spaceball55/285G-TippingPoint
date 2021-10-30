@@ -1,7 +1,7 @@
 #include "main.h"
 #include "comp/devices.hpp"
 
-bool tankDrive = true;
+bool tankDrive = false;
 
 
 void on_center_button() {}
