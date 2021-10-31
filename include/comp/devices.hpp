@@ -2,6 +2,7 @@
 #include "main.h"
 
 extern ChassisScales scales;
+
 extern std::shared_ptr<okapi::ChassisModel> model;
 
 extern std::shared_ptr<okapi::OdomChassisController> chassis;
@@ -10,10 +11,40 @@ extern okapi::Motor belt;
 
 extern okapi::Controller controller;
 
-enum trayStates {
-	off,
-	up,
-	down
+//extern TrayController trayController;
+
+extern okapi::MotorGroup trayMove;
+
+extern okapi::Motor rTray;
+extern okapi::Motor lTray;
+
+class TrayController{
+public:
+	
+	enum TrayStates {
+		off,
+		up,
+		down
+	};
+
+	//TrayStates state;
+	TrayStates state = off;
+	TrayStates getState();
+
+	bool settled;
+	double error;
+	std::shared_ptr<okapi::Motor> trayMotor; //plan is to track just the right motor
+
+	//TrayController(std::shared_ptr<okapi::Motor> imotor); 
+
+	void raise(double level);
+
+	void setState(TrayStates newState);
+	void trayMovement();
 };
 
-extern trayStates trayState;
+
+extern bool trayUp;
+
+
+extern void trayMovement();
