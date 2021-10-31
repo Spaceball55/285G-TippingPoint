@@ -21,7 +21,7 @@ okapi::Motor lTray(leftTray, false, okapi::AbstractMotor::gearset::green, okapi:
 //TrayController traycontroller = TrayController(rTray);
 
 std::shared_ptr<OdomChassisController> chassis = 
-ChassisControllerBuilder().withMotors({-10,-2}, {11, 20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry(); //add to devices
+ChassisControllerBuilder().withMotors({-10,-2}, {11, 20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
 
 
 std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
