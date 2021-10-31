@@ -2,9 +2,9 @@
 
 okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
 
-okapi::MotorGroup movement = MotorGroup({-10,-2,11,20});
+//okapi::MotorGroup movement = MotorGroup({-10,-2,11,20});
 
-const int rightTray = 4; //arbitrary motors, change later
+const int rightTray = -4; //arbitrary motors, change later
 const int leftTray = 5;
 
 //okapi::MotorGroup trayMove = MotorGroup({rightTray, leftTray});
