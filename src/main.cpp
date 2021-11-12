@@ -3,7 +3,11 @@
 
 bool tankDrive = false;
 
+bool isBlue = true;
+
 okapi::ControllerButton trayButton = okapi::ControllerDigital::L1;
+
+okapi::ControllerButton armButton = okapi::ControllerDigital::L2;
 
 TrayController tray;
 
@@ -15,7 +19,24 @@ void disabled() {}
 
 void competition_initialize() {}
 
-void autonomous() {}
+void autonomous() {
+	std::shared_ptr<OdomChassisController> chassis = 
+	ChassisControllerBuilder().withMotors({-10,-2}, {11, 20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
+
+	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
+
+
+	/*
+	plan:
+
+	start with tray down
+	pick up the mogo
+	move it
+	drop preload onto goals (before/after the previous step)
+	pick up more rings and drop into mogo
+	basic auton finished!
+	*/
+}
 
 void opcontrol() {
 

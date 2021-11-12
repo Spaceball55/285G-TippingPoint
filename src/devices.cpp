@@ -6,6 +6,7 @@ okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
 
 const int rightTray = -4; //arbitrary motors, change later
 const int leftTray = 5;
+const int hammer = 6;
 
 //okapi::MotorGroup trayMove = MotorGroup({rightTray, leftTray});
 
@@ -22,7 +23,6 @@ okapi::Motor lTray(leftTray, false, okapi::AbstractMotor::gearset::green, okapi:
 
 std::shared_ptr<OdomChassisController> chassis = 
 ChassisControllerBuilder().withMotors({-10,-2}, {11, 20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
-
 
 std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 	
