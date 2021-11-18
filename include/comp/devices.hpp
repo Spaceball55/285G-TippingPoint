@@ -18,6 +18,8 @@ extern okapi::MotorGroup trayMove;
 extern okapi::Motor rTray;
 extern okapi::Motor lTray;
 
+extern okapi::Motor hammer;
+
 extern bool isBlue;
 
 class TrayController{
@@ -54,16 +56,17 @@ extern void trayMovement();
 
 class HammerController{
 	public:
-	enum Hammerstates {
+	enum HammerStates {
+		off,
 		up,
-		down,
-		off
+		down
 	};
 
-	Hammerstates state = off;
+	HammerStates hState = off;
 	bool hammerSettled;
 
+	void newState(HammerStates newHState);
 	void HammerTime();
 };
 
-extern bool HammerUp;
+extern bool hammerUp;

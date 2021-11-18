@@ -6,7 +6,7 @@ okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
 
 const int rightTray = -4; //arbitrary motors, change later
 const int leftTray = 5;
-const int hammer = 6;
+const int hammerSlot = 6;
 
 //okapi::MotorGroup trayMove = MotorGroup({rightTray, leftTray});
 
@@ -18,6 +18,7 @@ const int hammer = 6;
 
 okapi::Motor rTray(rightTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor lTray(leftTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
+okapi::Motor hammer(hammerSlot, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 
 //TrayController traycontroller = TrayController(rTray);
 

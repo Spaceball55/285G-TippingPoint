@@ -14,7 +14,7 @@ void TrayController::trayMovement(){
 
             case up: //putting the tray into "up" position
             rTray.moveAbsolute(360, 60);
-            lTray.moveAbsolute(360,60); //todo: merge ltray and rtray 
+            lTray.moveAbsolute(360, 60); //todo: merge ltray and rtray 
             pros::delay(1000);
             state = TrayStates::off;
             trayUp = true;

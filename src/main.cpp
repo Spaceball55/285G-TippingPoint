@@ -13,7 +13,10 @@ TrayController tray;
 
 void on_center_button() {}
 
-void initialize() {}
+void initialize() {
+
+	hammer.set
+}
 
 void disabled() {}
 
