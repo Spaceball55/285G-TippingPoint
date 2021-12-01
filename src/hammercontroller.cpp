@@ -2,9 +2,9 @@
 
 bool hammerUp = true;
 
-void HammerController::newState(HammerStates newHState){hState = newHState;}
+void HammerController::updateState(HammerStates newHState){hState = newHState;}
 
-void HammerController::HammerTime(){
+void HammerController::hammerTime(){
     while(1){
         switch(hState){
             case off:

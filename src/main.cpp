@@ -9,13 +9,19 @@ okapi::ControllerButton trayButton = okapi::ControllerDigital::L1;
 
 okapi::ControllerButton armButton = okapi::ControllerDigital::L2;
 
+okapi::ControllerButton intakeButton = okapi::ControllerDigital::R1;
+
+okapi::ControllerButton hammerToggle = okapi::ControllerDigital::R2;
+
 TrayController tray;
+
+HammerController hammerWork;
 
 void on_center_button() {}
 
 void initialize() {
 
-	hammer.set
+	hammerWork.updateState(HammerController::HammerStates::up);
 }
 
 void disabled() {}
@@ -62,6 +68,24 @@ void opcontrol() {
 			}
 			else{
 				tray.setState(TrayController::TrayStates::up);
+			}
+		}
+
+		if(intakeButton.isPressed()){
+			intake.moveVelocity(200);
+			belt.moveVelocity(600);
+		}
+		else{
+			intake.moveVelocity(0);
+			belt.moveVelocity(0);
+		}
+
+		if(hammerToggle.isPressed()){
+			if(hammerUp == true){
+				hammerWork.updateState(HammerController::HammerStates::down);
+			}
+			else if(hammerUp == false){
+				hammerWork.updateState(HammerController::HammerStates::up);
 			}
 		}
 	}

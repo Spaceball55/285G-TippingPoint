@@ -11,6 +11,8 @@ extern okapi::Motor belt;
 
 extern okapi::Controller controller;
 
+extern okapi::Motor intake;
+
 //extern TrayController trayController;
 
 extern okapi::MotorGroup trayMove;
@@ -65,8 +67,8 @@ class HammerController{
 	HammerStates hState = off;
 	bool hammerSettled;
 
-	void newState(HammerStates newHState);
-	void HammerTime();
+	void updateState(HammerStates newHState);
+	void hammerTime();
 };
 
 extern bool hammerUp;
