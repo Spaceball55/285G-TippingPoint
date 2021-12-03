@@ -12,7 +12,7 @@ void HammerController::hammerTime(){
             break;
 
             case up:
-            hammer.moveAbsolute(0, 200);
+            hammer.moveAbsolute(0, 90);
             pros::delay(1000);
             hState = HammerStates::off;
             hammerUp = true;

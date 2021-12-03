@@ -22,6 +22,7 @@ void on_center_button() {}
 void initialize() {
 
 	hammerWork.updateState(HammerController::HammerStates::up);
+	
 }
 
 void disabled() {}
@@ -73,7 +74,7 @@ void opcontrol() {
 
 		if(intakeButton.isPressed()){
 			intake.moveVelocity(200);
-			belt.moveVelocity(600);
+			belt.moveVelocity(550);
 		}
 		else{
 			intake.moveVelocity(0);
