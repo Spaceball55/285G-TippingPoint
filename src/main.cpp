@@ -5,13 +5,13 @@ bool tankDrive = false;
 
 bool isBlue = true;
 
-okapi::ControllerButton trayButton = okapi::ControllerDigital::L1;
+okapi::ControllerButton trayButton = okapi::ControllerDigital::R2;
 
 okapi::ControllerButton armButton = okapi::ControllerDigital::L2;
 
 okapi::ControllerButton intakeButton = okapi::ControllerDigital::R1;
 
-okapi::ControllerButton hammerToggle = okapi::ControllerDigital::R2;
+okapi::ControllerButton hammerToggle = okapi::ControllerDigital::L2;
 
 TrayController tray;
 
@@ -65,10 +65,12 @@ void opcontrol() {
 
 		if(trayButton.changedToPressed()){
 			if(trayUp){
-				tray.setState(TrayController::TrayStates::down);
+				//tray.setState(TrayController::TrayStates::down);
+				lTray.moveVelocity(50); //test
 			}
-			else{
-				tray.setState(TrayController::TrayStates::up);
+			else if(trayButton.changedToReleased()){
+				//tray.setState(TrayController::TrayStates::up);
+				lTray.moveVelocity(0);
 			}
 		}
 
