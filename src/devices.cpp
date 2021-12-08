@@ -36,6 +36,11 @@ okapi::Motor belt(beltMotor, true, okapi::AbstractMotor::gearset::blue, okapi::A
 std::shared_ptr<OdomChassisController> chassis = 
 ChassisControllerBuilder().withMotors({-10,-2}, {11, 12}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
 
+
+std::shared_ptr<OdomChassisController> autChassis = 
+	ChassisControllerBuilder().withMotors({-10,-2}, {11, 20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withMaxVelocity(100).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
+
+
 std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 	
 okapi::Controller controller;

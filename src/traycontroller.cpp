@@ -2,7 +2,7 @@
 
 bool trayUp = true; //assuming we start with the tray in "up" position
 
-void TrayController::setState(TrayStates newState){state = newState;}
+void TrayController::setNewState(TrayStates newState){state = newState;}
 
 void TrayController::trayMovement(){
     while(1){

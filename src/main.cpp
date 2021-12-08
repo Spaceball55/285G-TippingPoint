@@ -30,11 +30,57 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	std::shared_ptr<OdomChassisController> chassis = 
-	ChassisControllerBuilder().withMotors({-10,-2}, {11, 20}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
+	
 
 	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
+
+	//red 
+
+	autChassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
+	
+
+
+	//easy one idk
+	autChassis->setState({0_in, 120_in, 0_deg});
+	belt.moveVelocity(500);
+	pros::delay(2000);
+	belt.moveVelocity(0);
+	autChassis->driveToPoint({0_in, 125_in});
+	pros::delay(100);
+	autChassis->turnToAngle(90_deg);
+	autChassis->driveToPoint({60_in, 125_in});
+	
+	// for when we do skills:
+
+	autChassis->moveDistance(12_in);
+/*
+	while(1){
+	autChassis->turnAngle(-90_deg);
+	autChassis->moveDistance(48_in);
+	autChassis->moveDistance(-48_in);
+	autChassis->turnAngle(90_deg);
+	}
+	autChassis->turnAngle(-90_deg);
+	autChassis->moveDistance(48_in);
+	autChassis->moveDistance(-48_in);
+	autChassis->turnAngle(90_deg);
+
+	autChassis->turnAngle(-90_deg);
+	autChassis->moveDistance(48_in);
+	autChassis->moveDistance(-48_in);
+	autChassis->turnAngle(90_deg);
+*/
+/*
+	autChassis->driveToPoint({60_in, 108_in});
+	pros::delay(100);
+	autChassis->driveToPoint({96_in, 108_in});
+	pros::delay(100);
+*/
+
+	//autChassis->driveToPoint(108_in, );
+	
+	//intake.moveVelocity(200);
 
 	/*
 	plan:
@@ -65,11 +111,11 @@ void opcontrol() {
 
 		if(trayButton.changedToPressed()){
 			if(trayUp){
-				//tray.setState(TrayController::TrayStates::down);
+				//tray.setNewState(TrayController::TrayStates::down);
 				lTray.moveVelocity(50); //test
 			}
 			else if(trayButton.changedToReleased()){
-				//tray.setState(TrayController::TrayStates::up);
+				//tray.setNewState(TrayController::TrayStates::up);
 				lTray.moveVelocity(0);
 			}
 		}
@@ -84,12 +130,20 @@ void opcontrol() {
 		}
 
 		if(hammerToggle.isPressed()){
+			
 			if(hammerUp == true){
-				hammerWork.updateState(HammerController::HammerStates::down);
+				//hammerWork.updateState(HammerController::HammerStates::down);
+				hammer.moveAbsolute(15, 60);
+				hammerUp = false;
 			}
 			else if(hammerUp == false){
-				hammerWork.updateState(HammerController::HammerStates::up);
+				//hammerWork.updateState(HammerController::HammerStates::up);
+				hammer.moveAbsolute(-15, 60);
+				hammerUp = true;
 			}
+			
+
+			
 		}
 	}
 }

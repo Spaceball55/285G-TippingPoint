@@ -7,6 +7,9 @@ extern std::shared_ptr<okapi::ChassisModel> model;
 
 extern std::shared_ptr<okapi::OdomChassisController> chassis;
 
+extern std::shared_ptr<okapi::OdomChassisController> autChassis;
+
+
 extern okapi::Motor belt;
 
 extern okapi::Controller controller;
@@ -45,7 +48,7 @@ public:
 
 	void raise(double level);
 
-	void setState(TrayStates newState);
+	void setNewState(TrayStates newState);
 	void trayMovement();
 };
 
