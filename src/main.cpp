@@ -17,12 +17,17 @@ TrayController tray;
 
 HammerController hammerWork;
 
+//hammerWork.updateState(HammerController::HammerStates::up);
+
 void on_center_button() {}
 
 void initialize() {
 
 	hammerWork.updateState(HammerController::HammerStates::up);
 	
+	pros::lcd::initialize();
+
+	pros::lcd::set_text(1, "Hammerstate set to up!");
 }
 
 void disabled() {}
@@ -109,17 +114,19 @@ void opcontrol() {
 			
 		}
 
-		if(trayButton.changedToPressed()){
+		if(trayButton.isPressed()){
 			if(trayUp){
 				//tray.setNewState(TrayController::TrayStates::down);
-				lTray.moveVelocity(50); //test
+				lTray.moveAbsolute(90, 60); //test
+				pros::delay(1000);
 			}
-			else if(trayButton.changedToReleased()){
+			else{
 				//tray.setNewState(TrayController::TrayStates::up);
-				lTray.moveVelocity(0);
+				lTray.moveAbsolute(0,60);
+				pros::delay(1000);
 			}
 		}
-
+/*
 		if(intakeButton.isPressed()){
 			intake.moveVelocity(200);
 			belt.moveVelocity(550);
@@ -128,7 +135,7 @@ void opcontrol() {
 			intake.moveVelocity(0);
 			belt.moveVelocity(0);
 		}
-
+*/
 		if(hammerToggle.isPressed()){
 			
 			if(hammerUp == true){

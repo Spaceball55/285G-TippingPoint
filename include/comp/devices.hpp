@@ -14,7 +14,7 @@ extern okapi::Motor belt;
 
 extern okapi::Controller controller;
 
-extern okapi::Motor intake;
+//extern okapi::Motor intake;
 
 //extern TrayController trayController;
 

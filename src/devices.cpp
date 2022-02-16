@@ -12,7 +12,7 @@ const int backRightWheel = 12;
 //const int rightTray = -4;
 const int leftTray = 3;
 const int hammerSlot = 13;
-const int intakeMotor = 20;
+//const int intakeMotor = 20;
 const int beltMotor = 19; 
 
 
@@ -27,7 +27,7 @@ const int beltMotor = 19;
 //okapi::Motor rTray(rightTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor lTray(leftTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor hammer(hammerSlot, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor intake(intakeMotor, true, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
+//okapi::Motor intake(intakeMotor, true, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor belt(beltMotor, true, okapi::AbstractMotor::gearset::blue, okapi::AbstractMotor::encoderUnits::degrees);
 
 
