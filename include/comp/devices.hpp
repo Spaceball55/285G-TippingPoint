@@ -52,26 +52,10 @@ public:
 	void trayMovement();
 };
 
+extern bool td; //tells if tray is down
 
-extern bool trayUp;
-
+extern void trayUp();
+extern void trayDown();
 
 extern void trayMovement();
 
-
-class HammerController{
-	public:
-	enum HammerStates {
-		off,
-		up,
-		down
-	};
-
-	HammerStates hState = off;
-	bool hammerSettled;
-
-	void updateState(HammerStates newHState);
-	void hammerTime();
-};
-
-extern bool hammerUp;

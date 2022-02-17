@@ -16,6 +16,9 @@ const int hammerSlot = 13;
 const int beltMotor = 19; 
 
 
+static std::shared_ptr<Logger> trayLog = okapi::Logger::getDefaultLogger();
+
+
 //okapi::MotorGroup trayMove = MotorGroup({rightTray, leftTray});
 
 //okapi::MotorGroup inB = MotorGroup();
@@ -44,3 +47,15 @@ std::shared_ptr<OdomChassisController> autChassis =
 std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 	
 okapi::Controller controller;
+
+std::shared_ptr<AsyncMotionProfileController> traySpinner =
+  AsyncMotionProfileControllerBuilder()
+    .withLimits({
+      1.0, // Maximum linear velocity of the Chassis in m/s
+      5.0, // Maximum linear acceleration of the Chassis in m/s/s
+      10.0 // Maximum linear jerk of the Chassis in m/s/s/s
+    })
+    .withOutput(chassis)
+    .buildMotionProfileController();
+
+//std::shared_ptr<OdomChassisController> timer = TimeUtil(AbstractTimer, AbstractRate, SettledUtil);

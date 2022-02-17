@@ -13,17 +13,13 @@ okapi::ControllerButton intakeButton = okapi::ControllerDigital::R1;
 
 okapi::ControllerButton hammerToggle = okapi::ControllerDigital::L2;
 
-TrayController tray;
-
-HammerController hammerWork;
-
 //hammerWork.updateState(HammerController::HammerStates::up);
 
 void on_center_button() {}
 
 void initialize() {
 
-	hammerWork.updateState(HammerController::HammerStates::up);
+	//hammerWork.updateState(HammerController::HammerStates::up);
 	
 	pros::lcd::initialize();
 
@@ -100,9 +96,7 @@ void autonomous() {
 }
 
 void opcontrol() {
-
 	while(1){
-		
 		if(tankDrive==true){
 			model->tank(controller.getAnalog(ControllerAnalog::leftY), controller.getAnalog(ControllerAnalog::rightY));
 			//tank drive using left and right to move
@@ -115,42 +109,19 @@ void opcontrol() {
 		}
 
 		if(trayButton.isPressed()){
-			if(trayUp){
-				//tray.setNewState(TrayController::TrayStates::down);
-				lTray.moveAbsolute(90, 60); //test
-				pros::delay(1000);
+			if(td){
+				trayUp();
 			}
 			else{
-				//tray.setNewState(TrayController::TrayStates::up);
-				lTray.moveAbsolute(0,60);
-				pros::delay(1000);
+				trayDown();
 			}
 		}
-/*
+		
 		if(intakeButton.isPressed()){
-			intake.moveVelocity(200);
 			belt.moveVelocity(550);
 		}
 		else{
-			intake.moveVelocity(0);
 			belt.moveVelocity(0);
-		}
-*/
-		if(hammerToggle.isPressed()){
-			
-			if(hammerUp == true){
-				//hammerWork.updateState(HammerController::HammerStates::down);
-				hammer.moveAbsolute(15, 60);
-				hammerUp = false;
-			}
-			else if(hammerUp == false){
-				//hammerWork.updateState(HammerController::HammerStates::up);
-				hammer.moveAbsolute(-15, 60);
-				hammerUp = true;
-			}
-			
-
-			
 		}
 	}
 }
