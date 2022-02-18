@@ -1,6 +1,12 @@
 #pragma once
 #include "main.h"
 
+extern okapi::ControllerButton trayButton;
+
+extern okapi::ControllerButton intakeButton;
+
+extern okapi::ControllerButton clawButton;
+
 extern ChassisScales scales;
 
 extern std::shared_ptr<okapi::ChassisModel> model;
@@ -9,8 +15,13 @@ extern std::shared_ptr<okapi::OdomChassisController> chassis;
 
 extern std::shared_ptr<okapi::OdomChassisController> autChassis;
 
+extern okapi::Motor rTray;
+
+extern okapi::Motor lTray;
 
 extern okapi::Motor belt;
+
+extern okapi::Motor claw;
 
 extern okapi::Controller controller;
 
@@ -18,38 +29,17 @@ extern okapi::Controller controller;
 
 //extern TrayController trayController;
 
-extern okapi::MotorGroup trayMove;
-
-extern okapi::Motor rTray;
-extern okapi::Motor lTray;
-
-extern okapi::Motor hammer;
-
 extern bool isBlue;
 
-class TrayController{
-public:
-	
-	enum TrayStates {
-		off,
-		up,
-		down
-	};
+class TwoBar {
+	public: 
+	void lift();
+};
 
-	//TrayStates state;
-	TrayStates state = off;
-	TrayStates getState();
-
-	bool settled;
-	double error;
-	std::shared_ptr<okapi::Motor> trayMotor; //plan is to track just the right motor
-
-	//TrayController(std::shared_ptr<okapi::Motor> imotor); 
-
-	void raise(double level);
-
-	void setNewState(TrayStates newState);
-	void trayMovement();
+class FourBar{
+	public:
+	void lift();
+	void clawToggle();
 };
 
 extern bool td; //tells if tray is down
@@ -57,5 +47,10 @@ extern bool td; //tells if tray is down
 extern void trayUp();
 extern void trayDown();
 
+extern void clawUp();
+extern void clawDown();
+
 extern void trayMovement();
+
+extern bool clawD;
 

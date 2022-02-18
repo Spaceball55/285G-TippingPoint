@@ -1,5 +1,14 @@
 #include "comp/devices.hpp"
 
+okapi::ControllerButton trayButton = okapi::ControllerDigital::R2;
+
+okapi::ControllerButton armButton = okapi::ControllerDigital::L2;
+
+okapi::ControllerButton intakeButton = okapi::ControllerDigital::R1;
+
+okapi::ControllerButton clawButton = okapi::ControllerDigital::L2;
+
+
 okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
 
 //okapi::MotorGroup movement = MotorGroup({-10,-2,11,20});
@@ -9,8 +18,10 @@ const int backLefttWheel = -2;
 const int frontRightWheel = 11;
 const int backRightWheel = 12;
 
+const int clawPort = 2;
+
 //const int rightTray = -4;
-const int leftTray = 3;
+const int leftTray = 1;
 const int hammerSlot = 13;
 //const int intakeMotor = 20;
 const int beltMotor = 19; 
@@ -32,7 +43,7 @@ okapi::Motor lTray(leftTray, false, okapi::AbstractMotor::gearset::green, okapi:
 okapi::Motor hammer(hammerSlot, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 //okapi::Motor intake(intakeMotor, true, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor belt(beltMotor, true, okapi::AbstractMotor::gearset::blue, okapi::AbstractMotor::encoderUnits::degrees);
-
+okapi::Motor claw(clawPort);
 
 //TrayController traycontroller = TrayController(rTray);
 
@@ -58,4 +69,3 @@ std::shared_ptr<AsyncMotionProfileController> traySpinner =
     .withOutput(chassis)
     .buildMotionProfileController();
 
-//std::shared_ptr<OdomChassisController> timer = TimeUtil(AbstractTimer, AbstractRate, SettledUtil);

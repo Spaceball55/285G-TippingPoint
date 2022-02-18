@@ -5,13 +5,8 @@ bool tankDrive = false;
 
 bool isBlue = true;
 
-okapi::ControllerButton trayButton = okapi::ControllerDigital::R2;
-
-okapi::ControllerButton armButton = okapi::ControllerDigital::L2;
-
-okapi::ControllerButton intakeButton = okapi::ControllerDigital::R1;
-
-okapi::ControllerButton hammerToggle = okapi::ControllerDigital::L2;
+TwoBar tb;
+FourBar fb;
 
 //hammerWork.updateState(HammerController::HammerStates::up);
 
@@ -108,14 +103,8 @@ void opcontrol() {
 			
 		}
 
-		if(trayButton.isPressed()){
-			if(td){
-				trayUp();
-			}
-			else{
-				trayDown();
-			}
-		}
+		tb.lift();
+		fb.clawToggle();
 		
 		if(intakeButton.isPressed()){
 			belt.moveVelocity(550);

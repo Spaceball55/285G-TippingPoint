@@ -1,12 +1,33 @@
 #include "comp/devices.hpp"
 
 std::shared_ptr<okapi::AsyncPositionController<double, double>> trayController = 
-    AsyncPosControllerBuilder().withMotor(lTray).build();
+AsyncPosControllerBuilder().withMotor(lTray).build();
+
+std::shared_ptr<okapi::AsyncPositionController<double, double>> fbController =
+AsyncPosControllerBuilder().withMotor(20).build();
+
+std::shared_ptr<okapi::AsyncPositionController<double, double>> clawController =
+AsyncPosControllerBuilder().withMotor(claw).build();
 
 bool td = true;
 
+bool clawD = false;
+
 const int h0 = 0;
-const int h1 = 1000;
+const int h1 = 90;
+
+const int fbh0 = 0;
+const int fbh1 = 100;
+
+//functions
+
+void TwoBar::lift(){
+    if(trayButton.changedToPressed()){
+        if(td) trayUp();
+        else trayDown();
+        td != td;
+    }
+};
 
 void trayUp(){
     trayController->setTarget(h1);
@@ -18,6 +39,27 @@ void trayDown(){
     td = false;
 }
 
+void fbUp(){
+    fbController->setTarget(fbh1);
+
+}
+
+void clawUp(){
+    clawController->setTarget(h1);
+}
+
+void clawDown(){
+    clawController->setTarget(h0);
+}
+
+void FourBar::clawToggle(){
+    if(clawButton.changedToPressed()){
+        if(clawD) clawUp();
+        else clawDown();
+
+        clawD != clawD;
+    }
+}
 
 /*
 void TrayController::setNewState(TrayStates newState){state = newState;}
