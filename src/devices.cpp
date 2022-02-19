@@ -2,7 +2,7 @@
 
 okapi::ControllerButton trayButton = okapi::ControllerDigital::R1;
 
-okapi::ControllerButton fourBarUpButton = okapi::ControllerDigital::A;
+okapi::ControllerButton fourBarUpButton = okapi::ControllerDigital::L2;
 
 okapi::ControllerButton fourBarDownButton = okapi::ControllerDigital::B;
 
@@ -23,10 +23,10 @@ const int backRightWheel = -20;
 const int clawPort = -9;
 
 //const int rightTray = -4;
-const int leftTray = -1;
-const int fbSlot = -2;
+const int leftTray = 5;
+const int fbSlot = 2;
 //const int intakeMotor = 20;
-const int beltMotor = 19; 
+const int beltMotor = 8; 
 
 
 static std::shared_ptr<Logger> trayLog = okapi::Logger::getDefaultLogger();

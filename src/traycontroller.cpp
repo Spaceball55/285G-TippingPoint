@@ -15,8 +15,8 @@ bool clawD = true;
 
 int currentHeight = fbMotor.getPosition();
 
-const int h0 = 0;
-const int h1 = 900;
+const int h0 = 50;
+const int h1 = 200;
 
 const int fbh0 = 0;
 const int fbh1 = -1000;
@@ -30,20 +30,18 @@ bool fbd = false;
 
 void TwoBar::lift(){
     if(trayButton.changedToPressed()){
+        td = !td;
         if(td) trayUp();
         else trayDown();
-        td != td;
     }
 };
 
 void trayUp(){
     trayController->setTarget(h1);
-    td = true;
 }
 
 void trayDown(){
     trayController->setTarget(h0);
-    td = false;
 }
 
 void fbUp(){
@@ -69,7 +67,13 @@ void FourBar::lift(){
     fbMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 
     if(fourBarUpButton.changedToPressed()){
-        fbMotor.moveVelocity(150);
+        //fbMotor.moveVelocity(150);
+        if(clawButton.changedToPressed()){
+        clawD = !clawD;
+        if(clawD) clawController->setTarget(clawh1);
+        else clawController->setTarget(clawh0);
+    }
+        
     }
     else if(fourBarDownButton.changedToPressed()){
         fbMotor.moveVelocity(-150);
@@ -85,8 +89,6 @@ void FourBar::clawToggle(){
         clawD = !clawD;
         if(clawD) clawController->setTarget(clawh1);
         else clawController->setTarget(clawh0);
-        //else if(!clawD) clawController->setTarget(clawh0);
-        //else claw.moveVelocity(0);
     }
 }
 

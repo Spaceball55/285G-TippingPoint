@@ -125,7 +125,7 @@ void opcontrol() {
 		fb.lift();
 		
 		if(intakeButton.isPressed()){
-			belt.moveVelocity(550);
+			belt.moveVelocity(200);
 		}
 		else{
 			belt.moveVelocity(0);
