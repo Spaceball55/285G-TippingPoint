@@ -4,7 +4,7 @@ std::shared_ptr<okapi::AsyncPositionController<double, double>> trayController =
 AsyncPosControllerBuilder().withMotor(lTray).build();
 
 std::shared_ptr<okapi::AsyncPositionController<double, double>> fbController =
-AsyncPosControllerBuilder().withMotor(20).build();
+AsyncPosControllerBuilder().withMotor(fbMotor).build();
 
 std::shared_ptr<okapi::AsyncPositionController<double, double>> clawController =
 AsyncPosControllerBuilder().withMotor(claw).build();
@@ -13,11 +13,15 @@ bool td = true;
 
 bool clawD = false;
 
+int currentHeight = fbMotor.getPosition();
+
 const int h0 = 0;
 const int h1 = 90;
 
 const int fbh0 = 0;
 const int fbh1 = 100;
+
+
 
 //functions
 
@@ -44,12 +48,31 @@ void fbUp(){
 
 }
 
+void fbDown(){
+    fbController->setTarget(fbh0);
+}
+
 void clawUp(){
     clawController->setTarget(h1);
 }
 
 void clawDown(){
     clawController->setTarget(h0);
+}
+
+void FourBar::lift(){
+    fbMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+
+    if(fourBarButton.changedToPressed() && currentHeight <= fbh1){
+        fbMotor.moveVelocity(150);
+    }
+    else if(fourBarButton.changedToPressed() && currentHeight <= fbh0){
+        fbMotor.moveVelocity(-150);
+    }
+    else {
+        fbMotor.moveVelocity(0);
+    }
+    currentHeight = fbMotor.getPosition();
 }
 
 void FourBar::clawToggle(){

@@ -1,12 +1,12 @@
 #include "comp/devices.hpp"
 
-okapi::ControllerButton trayButton = okapi::ControllerDigital::R2;
+okapi::ControllerButton trayButton = okapi::ControllerDigital::R1;
 
-okapi::ControllerButton armButton = okapi::ControllerDigital::L2;
+okapi::ControllerButton fourBarButton = okapi::ControllerDigital::L2;
 
-okapi::ControllerButton intakeButton = okapi::ControllerDigital::R1;
+okapi::ControllerButton intakeButton = okapi::ControllerDigital::L1;
 
-okapi::ControllerButton clawButton = okapi::ControllerDigital::L2;
+okapi::ControllerButton clawButton = okapi::ControllerDigital::R2;
 
 
 okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
@@ -21,8 +21,8 @@ const int backRightWheel = 12;
 const int clawPort = 2;
 
 //const int rightTray = -4;
-const int leftTray = 1;
-const int hammerSlot = 13;
+const int leftTray = -1;
+const int fbSlot = 3;
 //const int intakeMotor = 20;
 const int beltMotor = 19; 
 
@@ -32,19 +32,15 @@ static std::shared_ptr<Logger> trayLog = okapi::Logger::getDefaultLogger();
 
 //okapi::MotorGroup trayMove = MotorGroup({rightTray, leftTray});
 
-//okapi::MotorGroup inB = MotorGroup();
-
-//okapi::MotorGroup inF = MotorGroup();
-
-//std::shared_ptr<okapi::Motor> rTray = std::make_shared<okapi::Motor>(rightTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
+///std::shared_ptr<okapi::Motor> rTray = std::make_shared<okapi::Motor>(rightTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 
 //okapi::Motor rTray(rightTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor lTray(leftTray, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
-okapi::Motor hammer(hammerSlot, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
+//okapi::Motor hammer(hammerSlot, false, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 //okapi::Motor intake(intakeMotor, true, okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor belt(beltMotor, true, okapi::AbstractMotor::gearset::blue, okapi::AbstractMotor::encoderUnits::degrees);
 okapi::Motor claw(clawPort);
-
+okapi::Motor fbMotor(fbSlot);
 //TrayController traycontroller = TrayController(rTray);
 
 std::shared_ptr<OdomChassisController> chassis = 

@@ -7,6 +7,8 @@ extern okapi::ControllerButton intakeButton;
 
 extern okapi::ControllerButton clawButton;
 
+extern okapi::ControllerButton fourBarButton;
+
 extern ChassisScales scales;
 
 extern std::shared_ptr<okapi::ChassisModel> model;
@@ -16,6 +18,8 @@ extern std::shared_ptr<okapi::OdomChassisController> chassis;
 extern std::shared_ptr<okapi::OdomChassisController> autChassis;
 
 extern okapi::Motor rTray;
+
+extern okapi::Motor fbMotor;
 
 extern okapi::Motor lTray;
 
