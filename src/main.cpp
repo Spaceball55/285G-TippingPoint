@@ -1,6 +1,17 @@
 #include "main.h"
 #include "comp/devices.hpp"
 
+std::shared_ptr<okapi::AsyncMotionProfileController> autoChassis =
+  okapi::AsyncMotionProfileControllerBuilder()
+    .withLimits({
+      2.0, // Maximum linear velocity of the Chassis in m/s
+      8.0, // Maximum linear acceleration of the Chassis in m/s/s
+      15.0 // Maximum linear jerk of the Chassis in m/s/s/s
+    })
+    .withOutput(chassis)
+    .buildMotionProfileController();
+
+
 bool tankDrive = false;
 
 bool isBlue = true;
@@ -23,11 +34,16 @@ void initialize() {
 
 void disabled() {}
 
-void competition_initialize() {}
+void competition_initialize() {
+
+	autoChassis->generatePath({
+	{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
+
+}
 
 void autonomous() {
 	
-
+/*
 	std::shared_ptr<okapi::ChassisModel> model = std::dynamic_pointer_cast<okapi::ChassisModel>(chassis->getModel());
 
 
@@ -50,6 +66,7 @@ void autonomous() {
 	// for when we do skills:
 
 	autChassis->moveDistance(12_in);
+	*/
 /*
 	while(1){
 	autChassis->turnAngle(-90_deg);
@@ -105,6 +122,7 @@ void opcontrol() {
 
 		tb.lift();
 		fb.clawToggle();
+		fb.lift();
 		
 		if(intakeButton.isPressed()){
 			belt.moveVelocity(550);

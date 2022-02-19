@@ -7,7 +7,9 @@ extern okapi::ControllerButton intakeButton;
 
 extern okapi::ControllerButton clawButton;
 
-extern okapi::ControllerButton fourBarButton;
+extern okapi::ControllerButton fourBarUpButton;
+
+extern okapi::ControllerButton fourBarDownButton;
 
 extern ChassisScales scales;
 
@@ -15,7 +17,7 @@ extern std::shared_ptr<okapi::ChassisModel> model;
 
 extern std::shared_ptr<okapi::OdomChassisController> chassis;
 
-extern std::shared_ptr<okapi::OdomChassisController> autChassis;
+//extern std::shared_ptr<okapi::OdomChassisController> autChassis;
 
 extern okapi::Motor rTray;
 
@@ -58,3 +60,13 @@ extern void trayMovement();
 
 extern bool clawD;
 
+extern bool fbd;
+
+//auton include
+
+extern okapi::AsyncMotionProfileController autoChassis;
+
+const bool fwd {false};
+const bool bwd {true};
+
+extern void move(std::shared_ptr<okapi::AsyncMotionProfileController> profile, okapi::QLength distance, bool dir);

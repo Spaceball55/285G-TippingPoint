@@ -2,27 +2,29 @@
 
 okapi::ControllerButton trayButton = okapi::ControllerDigital::R1;
 
-okapi::ControllerButton fourBarButton = okapi::ControllerDigital::L2;
+okapi::ControllerButton fourBarUpButton = okapi::ControllerDigital::A;
 
-okapi::ControllerButton intakeButton = okapi::ControllerDigital::L1;
+okapi::ControllerButton fourBarDownButton = okapi::ControllerDigital::B;
 
-okapi::ControllerButton clawButton = okapi::ControllerDigital::R2;
+okapi::ControllerButton intakeButton = okapi::ControllerDigital::R2;
+
+okapi::ControllerButton clawButton = okapi::ControllerDigital::L1;
 
 
 okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
 
 //okapi::MotorGroup movement = MotorGroup({-10,-2,11,20});
 
-const int frontLeftWheel = -10;
-const int backLefttWheel = -2;
-const int frontRightWheel = 11;
-const int backRightWheel = 12;
+const int frontLeftWheel = 1;
+const int backLefttWheel = 11;
+const int frontRightWheel = -10;
+const int backRightWheel = -20;
 
-const int clawPort = 2;
+const int clawPort = -9;
 
 //const int rightTray = -4;
 const int leftTray = -1;
-const int fbSlot = 3;
+const int fbSlot = -2;
 //const int intakeMotor = 20;
 const int beltMotor = 19; 
 

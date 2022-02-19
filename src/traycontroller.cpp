@@ -11,17 +11,20 @@ AsyncPosControllerBuilder().withMotor(claw).build();
 
 bool td = true;
 
-bool clawD = false;
+bool clawD = true;
 
 int currentHeight = fbMotor.getPosition();
 
 const int h0 = 0;
-const int h1 = 90;
+const int h1 = 900;
 
 const int fbh0 = 0;
-const int fbh1 = 100;
+const int fbh1 = -1000;
 
+const int clawh0 = 100;
+const int clawh1 = -100;
 
+bool fbd = false;
 
 //functions
 
@@ -53,20 +56,22 @@ void fbDown(){
 }
 
 void clawUp(){
-    clawController->setTarget(h1);
+    clawController->setTarget(h0);
+    //clawD = false;
 }
 
 void clawDown(){
-    clawController->setTarget(h0);
+    clawController->setTarget(h1);
+    //clawD = true;
 }
 
 void FourBar::lift(){
     fbMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 
-    if(fourBarButton.changedToPressed() && currentHeight <= fbh1){
+    if(fourBarUpButton.changedToPressed()){
         fbMotor.moveVelocity(150);
     }
-    else if(fourBarButton.changedToPressed() && currentHeight <= fbh0){
+    else if(fourBarDownButton.changedToPressed()){
         fbMotor.moveVelocity(-150);
     }
     else {
@@ -77,10 +82,11 @@ void FourBar::lift(){
 
 void FourBar::clawToggle(){
     if(clawButton.changedToPressed()){
-        if(clawD) clawUp();
-        else clawDown();
-
-        clawD != clawD;
+        clawD = !clawD;
+        if(clawD) clawController->setTarget(clawh1);
+        else clawController->setTarget(clawh0);
+        //else if(!clawD) clawController->setTarget(clawh0);
+        //else claw.moveVelocity(0);
     }
 }
 
