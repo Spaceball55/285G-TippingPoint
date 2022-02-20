@@ -2,7 +2,7 @@
 
 okapi::ControllerButton trayButton = okapi::ControllerDigital::R1;
 
-okapi::ControllerButton fourBarUpButton = okapi::ControllerDigital::L2;
+okapi::ControllerButton fourBarUpButton = okapi::ControllerDigital::A;
 
 okapi::ControllerButton fourBarDownButton = okapi::ControllerDigital::B;
 
@@ -16,7 +16,7 @@ okapi::ChassisScales scales({3_in, 12_in}, imev5GreenTPR);
 //okapi::MotorGroup movement = MotorGroup({-10,-2,11,20});
 
 const int frontLeftWheel = 1;
-const int backLefttWheel = 11;
+const int backLeftWheel = 11;
 const int frontRightWheel = -10;
 const int backRightWheel = -20;
 
@@ -24,7 +24,8 @@ const int clawPort = -9;
 
 //const int rightTray = -4;
 const int leftTray = 5;
-const int fbSlot = 2;
+const int fbSlot = 3;
+const int fbSlot2 = 4;
 //const int intakeMotor = 20;
 const int beltMotor = 8; 
 
@@ -46,7 +47,7 @@ okapi::Motor fbMotor(fbSlot);
 //TrayController traycontroller = TrayController(rTray);
 
 std::shared_ptr<OdomChassisController> chassis = 
-ChassisControllerBuilder().withMotors({-10,-2}, {11, 12}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
+ChassisControllerBuilder().withMotors({frontLeftWheel, backLeftWheel}, {frontRightWheel, backRightWheel}).withDimensions(okapi::AbstractMotor::gearset::green, scales).withOdometry(scales, okapi::StateMode::CARTESIAN, 0_mm, 0_deg).buildOdometry();
 
 
 std::shared_ptr<OdomChassisController> autChassis = 

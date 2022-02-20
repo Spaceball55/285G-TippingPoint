@@ -15,7 +15,7 @@ bool clawD = true;
 
 int currentHeight = fbMotor.getPosition();
 
-const int h0 = 50;
+const int h0 = 0;
 const int h1 = 200;
 
 const int fbh0 = 0;
@@ -63,25 +63,23 @@ void clawDown(){
     //clawD = true;
 }
 
-void FourBar::lift(){
+void FourBar::liftDr4b(){
     fbMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 
-    if(fourBarUpButton.changedToPressed()){
-        //fbMotor.moveVelocity(150);
-        if(clawButton.changedToPressed()){
-        clawD = !clawD;
-        if(clawD) clawController->setTarget(clawh1);
-        else clawController->setTarget(clawh0);
-    }
+    if(fourBarUpButton.isPressed()){
+        fbMotor.moveVelocity(200);
+        fbMotor2.moveVelocity(200);
         
     }
-    else if(fourBarDownButton.changedToPressed()){
-        fbMotor.moveVelocity(-150);
+    else if(fourBarDownButton.isPressed()){
+        fbMotor.moveVelocity(-200);
+        fbMotor.moveVelocity(-200);
     }
     else {
         fbMotor.moveVelocity(0);
+        fbMotor2.moveVelocity(0);
     }
-    currentHeight = fbMotor.getPosition();
+    //currentHeight = fbMotor.getPosition();
 }
 
 void FourBar::clawToggle(){
@@ -89,6 +87,20 @@ void FourBar::clawToggle(){
         clawD = !clawD;
         if(clawD) clawController->setTarget(clawh1);
         else clawController->setTarget(clawh0);
+    }
+    clawD = clawD;
+
+    fbMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+
+    if(fourBarUpButton.isPressed()){
+        fbMotor.moveVelocity(200);
+        
+    }
+    else if(fourBarDownButton.isPressed()){
+        fbMotor.moveVelocity(-150);
+    }
+    else {
+        fbMotor.moveVelocity(0);
     }
 }
 

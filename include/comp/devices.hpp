@@ -23,6 +23,8 @@ extern okapi::Motor rTray;
 
 extern okapi::Motor fbMotor;
 
+extern okapi::Motor fbMotor2;
+
 extern okapi::Motor lTray;
 
 extern okapi::Motor belt;
@@ -44,7 +46,7 @@ class TwoBar {
 
 class FourBar{
 	public:
-	void lift();
+	void liftDr4b();
 	void clawToggle();
 };
 

@@ -122,7 +122,7 @@ void opcontrol() {
 
 		tb.lift();
 		fb.clawToggle();
-		fb.lift();
+		fb.liftDr4b();
 		
 		if(intakeButton.isPressed()){
 			belt.moveVelocity(200);
